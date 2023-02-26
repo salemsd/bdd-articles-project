@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<title>Les archives de Babel</title>
+
+<header>
+    <h1 style="text-align: center">Les archives de Babel</h1>
+    <h2 style="text-align: center">Archive de revues scientifiques</h2>
+    <div style="text-align: center">
+        <img src="{{ url_for('static', filename = 'logo87.png') }}" alt="Babel Logo" width="250" />
+    </div>
+</header>
+
+<link rel="stylesheet" href="/static/navbar.css" />
+<div class="navbar">
+    <a href="accueil">Accueil</a>
+    <div class="dropdown">
+        <button class="dropbtn">Consultation <i class="arrow-down"></i></button>
+        <div class="dropdown-content">
+            <a href="comites">Les comités</a>
+            <a href="articles">Tous nos articles</a>
+            <a href="auteurs">Tous nos auteurs</a>
+        </div>
+    </div>
+    <a href="recherche">Recherche</a>
+    <a href="deconnexion">Déconnexion</a>
+    <a href="info">À propos</a>
+</div>
+
+<p style="text-align: center">
+    Bienvenue sur les archives de Babel. Utilisez la barre de navigation pour
+    accéder aux différentes pages du site web.</br></br>
+
+    Vous êtes connecté en tant qu'admin
+</p></br>
+
+Saisissez les informations du nouvel admin
+
+<form method="get" action="ajout_adm">
+    <p> Nom d'utilisateur : </p>
+        <input type="text" name="nom-admin">
+    <p> Mot de passe: </p>
+        <input type="text" name="mdp">
+    <p><input type=submit value="Valider">
+</form>

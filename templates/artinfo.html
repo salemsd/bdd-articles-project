@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<title>Les archives de Babel</title>
+
+<header>
+    <h1 style="text-align: center">Les archives de Babel</h1>
+    <h2 style="text-align: center">Archive de revues scientifiques</h2>
+    <div style="text-align: center">
+        <img src="{{ url_for('static', filename = 'logo87.png') }}" alt="Babel Logo" width="250" />
+    </div>
+</header>
+
+<link rel="stylesheet" href="/static/navbar.css" />
+<div class="navbar">
+    <a href="{{url_for('acc')}}">Accueil</a>
+    <div class="dropdown">
+        <button class="dropbtn">Consultation <i class="arrow-down"></i></button>
+        <div class="dropdown-content">
+            <a href="{{url_for('com')}}">Les comités</a>
+            <a href="{{url_for('art')}}">Tous nos articles</a>
+            <a href="{{url_for('aut')}}">Tous nos auteurs</a>
+        </div>
+    </div>
+    <a href="{{url_for('page_rech')}}">Recherche</a>
+    {% if admin %}
+        <a href="{{url_for('supp', idsupp = lst.id_art)}}">Supprimer cet article</a>
+        <a href="{{url_for('modif', ida = lst.id_art)}}">Modifier cet article</a>
+        <a href="{{url_for('logout')}}">Déconnexion</a>
+    {% else %}
+        <a href="{{url_for('login')}}">Connexion admin</a>
+    {% endif %}
+    <a href="{{url_for('info')}}">À propos</a>
+</div></br>
+
+{% if admin %}
+<p style="text-align: center;">Vous êtes connecté en tant qu'admin</p></br></br>
+{% endif %}
+
+<p style="text-align: center;"><strong>{{lst.titre}} {{lst.volume}}</strong></p>
+<p>
+    <b>Langue :</b> {{lst.langue}}
+</p>
+<p>
+    <b>Nombre de pages :</b>  {{lst.nbr_page}}</br></br>
+    <b>Présent dans la revue :</b>  {{lst_rev.nom_revue}}, n°{{lst_rev.numero_revue}}</br></br>
+    <b>Année de parution :</b>  {{lst.annee}}</br></br>
+    <b>Auteur(s) :</b>
+    <ul>
+        {%for elem in lst2%}
+        <li><a href="{{url_for('c_auteur', infa = elem.id_auteur)}}">{{elem.nom}} {{elem.prenom}}</a></li><br>
+        {%endfor%}
+    </ul>
+
+</p>
+
+</html>

@@ -1,0 +1,18 @@
+<!doctype html>
+<html>
+<title>Angele Maximilian</title>
+
+<header>
+    <h1 style="text-align:center; background-color:blueviolet"> Angele Maximilian </h1>
+    <h2 style="text-align:center; background-color: cornflowerblue">Bienvenue sur mon site web</h2>
+  </header>
+
+
+<img src = "{{ url_for('static', filename = 'angel.jpg') }}" alt = "photo" width = "200">
+
+<p>Je peux vous écrire un article si vous voulez</p>
+<p style="text-align:end">Pour me contacter : {{lst.num_auteur}}</p>
+<a style="text-align: start" href = "{{url_for('acc')}}">Revenir sur les archives de Babel</a>
+
+
+</html>

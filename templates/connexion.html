@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<title>Les archives de Babel</title>
+
+<header>
+    <h1 style="text-align: center">Les archives de Babel</h1>
+    <h2 style="text-align: center">Archive de revues scientifiques</h2>
+    <div style="text-align: center">
+        <img src="{{ url_for('static', filename = 'logo87.png') }}" alt="Babel Logo" width="250" />
+    </div>
+</header>
+
+<link rel="stylesheet" href="/static/navbar.css" />
+<div class="navbar">
+    <a href="{{url_for('acc')}}">Accueil</a>
+    <div class="dropdown">
+        <button class="dropbtn">Consultation <i class="arrow-down"></i></button>
+        <div class="dropdown-content">
+            <a href="{{url_for('com')}}">Les comités</a>
+            <a href="{{url_for('art')}}">Tous nos articles</a>
+            <a href="{{url_for('aut')}}">Tous nos auteurs</a>
+        </div>
+    </div>
+    <a href="{{url_for('page_rech')}}">Recherche</a>
+    <a href="{{url_for('login')}}">Connexion admin</a>
+    <a href="{{url_for('info')}}">À propos</a>
+</div>
+
+<p style="text-align: center">
+    Bienvenue sur les archives de Babel. Utilisez la barre de navigation pour
+    accéder aux différentes pages du site web.
+</p></br>
+
+Saisissez vos identifiants d'administrateur
+
+<form method="post" action="verification">
+    <p> Nom d'utilisateur : </p>
+        <input type="text" name="nom-admin">
+    <p> Mot de passe: </p>
+        <input type="password" name="mdp">
+    <p><input type=submit value="Valider">
+</form>

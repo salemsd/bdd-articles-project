@@ -1,0 +1,12 @@
+<!doctype html>
+<title>Modification d'article</title>
+
+<p>Completer les informations ci-dessous</p>
+<form method="post" action="{{url_for('savemod',ida=lst.id_art)}}">
+    <p> Titre de l'Article : <input type="text" placeholder={{lst.titre}} name="titre">
+    <p> Langue : <input type="varchar(15)" placeholder={{lst.langue}} name="langue">
+    <p> Nombre de pages : <input type="int" placeholder={{lst.nbr_page}} name="nbr_page">
+    <p> Année de parution :  <input type="int" placeholder="{{lst.annee}}" name="annee">
+    <p> Volume :  <input type="varchar(5)" placeholder="{{lst.volume}}" name ="volume">
+    <p><input type=submit value="Envoyer">
+  </form>

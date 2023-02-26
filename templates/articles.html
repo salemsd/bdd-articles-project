@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<title>Les archives de Babel</title>
+
+<style>
+    table,
+    th,
+    td {
+        border: 1px solid black;
+        padding: 4px;
+    }
+
+    .table a {
+        display: block;
+        text-decoration: none;
+    }
+</style>
+
+<header>
+    <h1 style="text-align: center">Les archives de Babel</h1>
+    <h2 style="text-align: center">Archive de revues scientifiques</h2>
+    <div style="text-align: center">
+        <img src="{{ url_for('static', filename = 'logo87.png') }}" alt="Babel Logo" width="250" />
+    </div>
+</header>
+
+<link rel="stylesheet" href="/static/navbar.css" />
+<div class="navbar">
+    <a href="{{url_for('acc')}}">Accueil</a>
+    <div class="dropdown">
+        <button class="dropbtn">Consultation <i class="arrow-down"></i></button>
+        <div class="dropdown-content">
+            <a href="{{url_for('com')}}">Les comités</a>
+            <a href="{{url_for('art')}}">Tous nos articles</a>
+            <a href="{{url_for('aut')}}">Tous nos auteurs</a>
+        </div>
+    </div>
+    <a href="{{url_for('page_rech')}}">Recherche</a>
+    {% if not admin %}
+        <a href="{{url_for('login')}}">Connexion admin</a>
+    {% else %}
+        <a href="{{url_for('formart')}}">Ajouter un article</a>
+        <a href="ajout_adm">Ajout admin</a>
+        <a href="deconnexion">Déconnexion</a>
+    {% endif %}
+    <a href="{{url_for('info')}}">À propos</a>
+</div>
+
+<p style="text-align: center">
+    Bienvenue sur les archives de Babel. Utilisez la barre de navigation pour
+    accéder aux différentes pages du site web.</br></br>
+    {% if admin %}
+        Vous êtes connecté en tant qu'admin
+    {% endif %}
+</p></br>
+
+<p style="text-align: center">
+    {{mot}}
+</p>
+<p style="text-align: center">
+    Voici la liste des articles
+</p>
+
+
+<table style="width:100%">
+    <tr>
+        <th>Titre</th>
+        <th>Auteur</th>
+        <th>Volume</th>
+        <th>Domaine</th>
+        <th>Langue</th>
+        <th>Année de publication</th>
+    </tr>
+
+    {%for article in lst_art%}
+        <tr>
+            <td><a href="/articles/{{article.id_art}}">{{article.titre}}</a></td>
+            <td><a href="/auteurs/{{article.id_auteur}}">{{article.prenom}} {{article.nom}}</a></td>
+            <td>{{article.volume}}</td>
+            <td>{{article.nom_domaine}}</td>
+            <td>{{article.langue}}</td>
+            <td>{{article.annee}}</td>
+        </tr>
+    {%endfor%}
+</table>
+
+</html>

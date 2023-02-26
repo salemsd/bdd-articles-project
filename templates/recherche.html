@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<title>Les archives de Babel</title>
+
+<style>
+    table,
+    th,
+    td {
+        border: 1px solid black;
+        padding: 4px;
+    }
+
+    .table a {
+        display: block;
+        text-decoration: none;
+    }
+</style>
+
+<header>
+    <h1 style="text-align: center">Les archives de Babel</h1>
+    <h2 style="text-align: center">Archive de revues scientifiques</h2>
+    <div style="text-align: center">
+        <img src="{{ url_for('static', filename = 'logo87.png') }}" alt="Babel Logo" width="250" />
+    </div>
+</header>
+
+<link rel="stylesheet" href="/static/navbar.css" />
+<div class="navbar">
+    <a href="{{url_for('acc')}}">Accueil</a>
+    <div class="dropdown">
+        <button class="dropbtn">Consultation <i class="arrow-down"></i></button>
+        <div class="dropdown-content">
+            <a href="{{url_for('com')}}">Les comités</a>
+            <a href="{{url_for('art')}}">Tous nos articles</a>
+            <a href="{{url_for('aut')}}">Tous nos auteurs</a>
+        </div>
+    </div>
+    <a href="{{url_for('page_rech')}}">Recherche</a>
+    {% if not admin %}
+        <a href="{{url_for('login')}}">Connexion admin</a>
+    {% else %}
+        <a href="deconnexion">Déconnexion</a>
+        <a href="ajout_adm">Ajout admin</a>
+    {% endif %}
+    <a href="{{url_for('info')}}">À propos</a>
+</div>
+
+<p style="text-align: center">
+    Bienvenue sur les archives de Babel. Utilisez la barre de navigation pour
+    accéder aux différentes pages du site web.</br></br>
+    {% if admin %}
+        Vous êtes connecté en tant qu'admin
+    {% endif %}
+</p></br>
+
+<fieldset>
+    <form method="get" action="recherche">
+        <legend>Rechercher un article:</legend>
+        <input type="radio" id="titre" name="mode" value="titre" checked />
+        <label for="titre">Par titre</label>
+
+        <input type="radio" id="auteur" name="mode" value="auteur" />
+        <label for="titre">Par auteur</label>
+
+        <input type="radio" id="nom_domaine" name="mode" value="nom_domaine" />
+        <label for="domaine">Par domaine</label>
+
+        <input type="radio" id="langue" name="mode" value="langue" />
+        <label for="langue">Par langue</label>
+
+        <input type="radio" id="annee" name="mode" value="annee" />
+        <label for="annee">Par année de publication</label>
+
+        <input type="radio" id="nom_revue" name="mode" value="nom_revue" />
+        <label for="revue">Par revue</label>
+
+        <input type="radio" id="nom_labo" name="mode" value="nom_labo" />
+        <label for="labo">Par laboratoire</label></br></br>
+
+        <input type="search" id="site-search" name="rech" size="50px" />
+        <button>Rechercher</button>
+    </form>
+</fieldset></br>
+
+{% if mode and not rech %}
+    <p>Indiquez votre recherche dans le champ adéquat</p>
+
+{% elif mode and rech%}
+    {% if lst_resultat == [] %}
+        {% if mode != "concat(prenom, ' ', nom)" %}
+            <p>La recherche par {{mode}} sur « {{rech}} » n'a rien donné</p>
+        {% else %}
+            <p>La recherche par auteur sur « {{rech}} » n'a rien donné</p>
+        {% endif %}
+    {% else %}
+        <b>Voici les résultats de votre recherche par {{mode}} pour « {{rech}} »:</b></br></br>
+        <table style="width:100%">
+            <tr>
+              <th>Titre</th>
+              <th>Auteur</th>
+              <th>Volume</th>
+              <th>Domaine</th>
+              <th>Langue</th>
+              <th>Année de publication</th>
+            </tr>
+            {% for article in lst_resultat %}
+                <tr>
+                  <td><a href="/articles/{{article.id_art}}">{{article.titre}}</a></td>
+                  <td><a href="/auteurs/{{article.id_auteur}}">{{article.prenom}} {{article.nom}}</a></td>
+                  <td>{{article.volume}}</td>
+                  <td>{{article.nom_domaine}}</td>
+                  <td>{{article.langue}}</td>
+                  <td>{{article.annee}}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+{% endif %}
+
+</html>

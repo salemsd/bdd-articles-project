@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<title>Les archives de Babel</title>
+
+<header>
+    <h1 style="text-align: center">Les archives de Babel</h1>
+    <h2 style="text-align: center">Archive de revues scientifiques</h2>
+    <div style="text-align: center">
+        <img src="{{ url_for('static', filename = 'logo87.png') }}" alt="Babel Logo" width="250" />
+    </div>
+</header>
+
+<link rel="stylesheet" href="/static/navbar.css" />
+<div class="navbar">
+    <a href="{{url_for('acc')}}">Accueil</a>
+    <div class="dropdown">
+        <button class="dropbtn">Consultation <i class="arrow-down"></i></button>
+        <div class="dropdown-content">
+            <a href="{{url_for('com')}}">Les comités</a>
+            <a href="{{url_for('art')}}">Tous nos articles</a>
+            <a href="{{url_for('aut')}}">Tous nos auteurs</a>
+        </div>
+    </div>
+    <a href="{{url_for('page_rech')}}">Recherche</a>
+    {% if admin %}
+        <a href="{{url_for('suppaut', idsupp = lst.id_auteur)}}">Supprimer cet auteur</a>
+        <a href="{{url_for('modaut', ida = lst.id_auteur)}}">Modifier cet auteur</a>
+        <a href="{{url_for('logout')}}">Déconnexion</a>
+    {% else %}
+        <a href="{{url_for('login')}}">Connexion admin</a>
+    {% endif %}
+    <a href="{{url_for('info')}}">À propos</a>
+</div></br>
+
+{% if admin %}
+<p style="text-align: center;">Vous êtes connecté en tant qu'admin</p></br></br>
+{% endif %}
+
+<p style="text-align: center"> Informations sur <b>{{lst.nom}} {{lst.prenom}}</b></p>
+<p><b>Contact :</b> {{lst.num_auteur}}</p>
+<p><b>Numéro de comité :</b> {{lst.id_comite}}</p>
+<p><b>Affilié aux laboratoires:</b>
+    <ul>
+        {% for lab in lst_lab %}
+            <li><b>{{lab.nom_labo}}</b>, {{lab.adresse}}, {{lab.pays}}</li>
+        {% endfor %}
+    </ul>
+</p>
+<p>
+    <b>Article(s) :</b>
+<ul>
+    {%for elem in lst2: %}
+    <li><a href="{{url_for('infart' ,ida = elem.id_art)}}">{{elem.titre}}</a></li>
+    {%endfor%}
+</ul>
+{% if lst.id_auteur == 7: %}
+<p style="text-align: end;"><a href="{{url_for('angele')}}">Mon site web</a></p>
+{%endif%}
+</p>
+
+</html>

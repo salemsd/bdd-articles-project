@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<title>Les archives de Babel</title>
+
+<style>
+    table,
+    th,
+    td {
+        border: 1px solid black;
+        padding: 4px;
+    }
+
+    .table a {
+        display: block;
+        text-decoration: none;
+    }
+</style>
+
+<header>
+    <h1 style="text-align: center">Les archives de Babel</h1>
+    <h2 style="text-align: center">Archive de revues scientifiques</h2>
+    <div style="text-align: center">
+        <img src="{{ url_for('static', filename = 'logo87.png') }}" alt="Babel Logo" width="250" />
+    </div>
+</header>
+
+<link rel="stylesheet" href="/static/navbar.css" />
+<div class="navbar">
+    <a href="{{url_for('acc')}}">Accueil</a>
+    <div class="dropdown">
+        <button class="dropbtn">Consultation <i class="arrow-down"></i></button>
+        <div class="dropdown-content">
+            <a href="{{url_for('com')}}">Les comités</a>
+            <a href="{{url_for('art')}}">Tous nos articles</a>
+            <a href="{{url_for('aut')}}">Tous nos auteurs</a>
+        </div>
+    </div>
+    <a href="recherche">Recherche</a>
+    {% if not admin %}
+        <a href="connexion">Connexion admin</a>
+    {% else %}
+        <a href="{{url_for('formaut')}}">Ajouter un auteur</a>
+        <a href="ajout_adm">Ajout admin</a>
+        <a href="deconnexion">Déconnexion</a>
+    {% endif %}
+    <a href="info">À propos</a>
+</div>
+
+<p style="text-align: center">
+    Bienvenue sur les archives de Babel. Utilisez la barre de navigation pour
+    accéder aux différentes pages du site web.</br></br>
+    {% if admin %}
+        Vous êtes connecté en tant qu'admin
+    {% endif %}
+</p></br>
+
+<p style="text-align: center">
+    Voici la liste des auteurs
+</p>
+<p style="text-align: center">
+    {{mot}}
+</p>
+
+<table style="width:50%; margin-left: auto; margin-right: auto;">
+    <tr>
+        <th>Nom complet</th>
+        <th>Nombre d'articles</th>
+    </tr>
+
+    {%for auteur in lst_aut%}
+        <tr>
+            <td><a href="/auteurs/{{auteur.id_auteur}}">{{auteur.prenom}} {{auteur.nom}}</a></td>
+            <td>{{auteur.nb_art}}</td>
+        </tr>
+    {%endfor%}
+</table>
+
+</html>

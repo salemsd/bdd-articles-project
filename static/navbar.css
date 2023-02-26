@@ -1,0 +1,109 @@
+/* Div de la navbar */
+.navbar {
+    overflow: hidden;
+    background-color:rgb(233, 233, 233);
+    font-family: Arial;
+    display: flex;
+    justify-content: center;
+}
+
+/* Boutons du menu de nav */
+.navbar a {
+    float: left;
+    font-size: 16px;
+    color: rgb(64, 64, 64);
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+/* Div du dropdown */
+.dropdown {
+    float: left;
+    overflow: hidden;
+}
+
+/* Bouton du menu déroulant */
+.dropdown .dropbtn {
+    font-size: 16px;
+    border: none;
+    outline: none;
+    color: rgb(64, 64, 64);
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+}
+
+/* Flèche du menu déroulant */
+.arrow-down {
+    border: solid rgb(64, 64, 64);
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    padding: 2px;
+    margin-bottom: 3px;
+    margin-left: 3px;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+}
+
+/* Couleur de fond lors du survol des boutons avec la souris */
+.navbar a:hover,
+.dropdown:hover .dropbtn {
+    background-color: white;
+}
+
+/* Contenu du menu déroulant */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+/* Liens du menu déroulant */
+.dropdown-content a {
+    float: none;
+    color: rgb(64, 64, 64);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+/* Couleur de fond lors du survol des éléments du menu déroulant */
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+/* Afficher le menu déroulant lors du survol */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.boite-titre-accueil{
+    background-color: grey;
+    padding: 8px;
+    max-width:30%;
+    border-radius: 10px 10px 0 0;
+    box-shadow: 0px 3px 15px #00000029;
+    color: #fff;
+    font-weight: bold;
+    font-size: 12px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.boite-accueil{
+    background-color: white;
+    box-shadow: 0px 3px 15px #00000029;
+    max-width: 30%;
+    padding: 8px;
+    margin-bottom: 10px;
+}
+
+.boite-accueil span{
+    text-align: center;
+    margin-left: 15px;
+}
